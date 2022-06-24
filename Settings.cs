@@ -49,7 +49,7 @@ public static class Settings
 			y = new int[] { 150, 233, 243, 218, 208 }
 		};
 
-		public KeyPoint[] keys { get; set; } = new KeyPoint[0];
+		public KeyPoint[] keys { get; set; } = KeyPoint.Default();
 	}
 
 	[Serializable]
@@ -72,5 +72,37 @@ public static class Settings
 		public int key { get; set; }
 		public int x { get; set; }
 		public int y { get; set; }
+
+		public KeyPoint(int key, Vector point)
+		{
+			(x, y) = ((int)point.X, (int)point.Y);
+			this.key = key;
+		}
+
+		public KeyPoint() { } // for json serializer
+
+		public static KeyPoint[] Default()
+		{
+			List<KeyPoint> points = new();
+			Vector start = new(688, 367), current = start;
+			Vector col = new Vector(-80, 8) / 3f, row = new Vector(-20, -27);
+
+			foreach (int key in new[] { 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 13, -1,
+										65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 220, -1,
+										90, 88, 67, 86, 66, 78, 77, 188, 190, 191 })
+			{
+				if (key == -1) current = (start += row);
+				else
+				{
+					points.Add(new KeyPoint(key, current));
+					current += col;
+				}
+			}
+
+			points.Add(new KeyPoint(192, start - col));
+			points.Add(new KeyPoint(32, new(546, 294)));
+
+			return points.ToArray();
+		}
 	}
 }

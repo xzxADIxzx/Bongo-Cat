@@ -50,7 +50,7 @@ public static class Renderer
 		mouse.x = (int)(sets.mat_x - x * sets.mat_w);
 		mouse.y = (int)(sets.mat_y - y * sets.mat_h);
 		right.setTarget(mouse.x + 50, mouse.y + 10);
-		Spline.fix = 1f; // return default value
+		Spline.fix = 1.1f; // return default value
 
 		left.raised = true;
 		foreach (KeyPoint key in sets.keys)
