@@ -21,7 +21,7 @@ public static class Launcher
 		Raylib.InitWindow(sets.width, sets.heigth, "Bongo Cat");
 
 		Raylib.SetTargetFPS(sets.fps);
-		Raylib.SetWindowIcon(Raylib.LoadImage("sprites\\icon small.png"));
+		Raylib.SetWindowIcon(Raylib.LoadImage("sprites\\icon.png"));
 		Raylib.SetExitKey(KeyboardKey.KEY_NULL);
 
 		Renderer.Load(); // textures can only be loaded after window initialization
